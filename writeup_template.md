@@ -144,10 +144,12 @@ left_info['steering'].apply(lambda x : x+0.2)
 
 Then I increased the data by data augumentation, where I flipped the images using matplotlib's  ```image_f = image.transpose(Image.FLIP_LEFT_RIGHT)``` . A sample of direct and fipped images are as follows:
 
-Direct
-![alt text][image2d]
-Flipped
-![alt text][image2e]
+
+| Direct         | Flipped       |
+| ------------- |:-------------:| 
+|![Left][Image2d] | ![Center][Image2e]
+
+
 
 While flipping the images, I also changed the steering angles by using :
 
