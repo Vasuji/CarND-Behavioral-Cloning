@@ -167,7 +167,7 @@ The overall strategy for deriving a model architecture was to develop a model fr
 
   I added a fully connected layer after the convolutions to allow the model to perform high-level reasoning on the features taken from the convolutions.
   
-*** Final Layer ***
+***Final Layer***
 
   This is a regression and not a classification problem since the output (steering angle) is continuous, ranging from -1.0 to 1.0. So instead of ending with a softmax layer, I used a 1-neuron fully connected layer as my final layer. 
 
