@@ -19,7 +19,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/placeholder.png "Model Visualization"
+[image1]: ./examples/modelword.png "Model Visualization"
 [image2a]: ./examples/left.jpg "left"
 [image2b]: ./examples/center.jpg "center"
 [image2c]: ./examples/right.jpg "right"
@@ -135,7 +135,7 @@ I used the data available at Udacity(link). It consist of three types of images:
 |![Left][image2a] | ![Center][image2b] | ![Right][image2c]
 
 
-Simultanously, Ialso changed the steering angle for right and left images by 
+Simultanously, I also changed the steering angle for right and left images by 
 
 ```
 right_info['steering'].apply(lambda x : x-0.2) 
@@ -157,12 +157,12 @@ While flipping the images, I also changed the steering angles by using :
 f_steering_angle = -1. * float(item[1][1])
 ```
 
-After the collection process, I had X number of data points. I then preprocessed this data by ...
+After the collection process, I had 43394 number of data points. Initial images are of size ```160,320``` with 3 color chanels. I croped away the top ```64``` rows and bottom ```32``` row of pixels. I then resized this data to ```40x160``` by introducing ```Lambda ``` function and normalized the data by introducing another lambda function.
 
 
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
+I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 20. I used an adam optimizer so that manually training the learning rate wasn't necessary.
 
 
 
