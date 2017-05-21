@@ -24,7 +24,7 @@ The goals / steps of this project are the following:
 [image2b]: ./examples/center.jpg "center"
 [image2c]: ./examples/right.jpg "right"
 [image2d]: ./examples/left_d.jpg "direct"
-[image2e]: ./examples/left_f.png "flipped"
+[image2e]: ./examples/left_f.jpg "flipped"
 [image3]: ./examples/placeholder_small.png "Recovery Image"
 [image4]: ./examples/placeholder_small.png "Recovery Image"
 [image5]: ./examples/placeholder_small.png "Recovery Image"
@@ -129,8 +129,11 @@ Here is a visualization of the architecture (note: visualizing the architecture 
 
 I used the data available at Udacity(link). It consist of three types of images: center, right and left as shown below:
 
+Left
 ![alt text][image2a]
+Center
 ![alt text][image2b]
+Right
 ![alt text][image2c]
 
 Simultanously, Ialso changed the steering angle for right and left images by 
@@ -142,7 +145,9 @@ left_info['steering'].apply(lambda x : x+0.2)
 
 Then I increased the data by data augumentation, where I flipped the images using matplotlib's  ```image_f = image.transpose(Image.FLIP_LEFT_RIGHT)``` . A sample of direct and fipped images are as follows:
 
+Direct
 ![alt text][image2d]
+Flipped
 ![alt text][image2e]
 
 While flipping the images, I also changed the steering angles by using :
