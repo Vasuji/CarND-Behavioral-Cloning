@@ -129,12 +129,11 @@ Here is a visualization of the architecture (note: visualizing the architecture 
 
 I used the data available at Udacity(link). It consist of three types of images: center, right and left as shown below:
 
-Left
-![alt text][image2a]
-Center
-![alt text][image2b]
-Right
-![alt text][image2c]
+
+| Left          | Center        | Right  |
+| ------------- |:-------------:| ------|
+|![Left](image2a) | ![Center](image2b) | ![Right](image2c)
+
 
 Simultanously, Ialso changed the steering angle for right and left images by 
 
