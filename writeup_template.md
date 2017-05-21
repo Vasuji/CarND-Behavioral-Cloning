@@ -132,13 +132,12 @@ def get_model(verbose):
 
 | Layer  | Detail |
 | ------------- |:-------------:| 
-|Convolution Layer 1| <ul>
-				<li>Filters: 16</li>
-				<li>Kernel: 8 x 8</li>
-				<li>Stride: 4 x 4</li>
-				<li>Padding: SAME</li>
-				<li>Activation: ELU</li>
-			</ul> |
+|Convolution Layer 1| Filters: 16
+		      Kernel: 8 x 8
+		      Stride: 4 x 4
+		      Padding: SAME
+		      Activation: ELU |
+			
 
 ---------
 
