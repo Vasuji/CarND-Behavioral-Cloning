@@ -19,7 +19,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/modelword.png "Model Visualization"
+[image1]: ./examples/model.png "Model Visualization"
 [image2a]: ./examples/left.jpg "left"
 [image2b]: ./examples/center.jpg "center"
 [image2c]: ./examples/right.jpg "right"
