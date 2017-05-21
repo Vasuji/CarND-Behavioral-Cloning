@@ -128,16 +128,7 @@ def get_model(verbose):
     return model
 
 ```
-***Specification in Table form***
 
-| Layer  | Detail |
-| ------------- |:-------------:| 
-|Convolution Layer 1| Filters: 16, Kernel: 8 x 8, Stride: 4 x 4 , Padding: SAME , Activation: ELU |
-|Convolution Layer 2| Filters: 32, Kernel: 5 x 5, Stride: 2 x 2 , Padding: SAME , Activation: ELU |
-|Convolution Layer 3| Filters: 64, Kernel: 5 x 5, Stride: 2 x 2 , Padding: SAME , Activation: ELU |
-|Flatten Layer|   |
-|Fully connected layer 1| Neurons: 512, Dropout: 0.5, Activation: ELU |
-|Fully connected layer 2| Neurons: 50, Activation: ELU |
 ---------
 
 
@@ -153,16 +144,9 @@ The model used an adam optimizer, so the learning rate was not tuned manually (m
 
 #### 4. Appropriate training data
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ... 
+Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road and flipped images
 
 For details about how I created the training data, see the next section. 
-
-
-
-
-
-
-
 
 -----------------
 
@@ -170,25 +154,45 @@ For details about how I created the training data, see the next section.
 
 #### 1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to ...
+The overall strategy for deriving a model architecture was to develop a model from data so that we could drive  a car in autonomous mode. Following are the steps in solution design aproach:
 
-My first step was to use a convolution neural network model similar to the ... I thought this model might be appropriate because ...
+***Convolution***
 
-In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
+   My first step was to use a convolution neural network model similar to the comma.ai. I thought this model might be appropriate because model building needs different property of image from different deepth of neural network. More strikingly it has to be precise on decision making for example: If the car is to the side of the lane, it should steer differently than if it is in the center of a lane. Central idea is where is car from middle of two lanes.
 
-To combat the overfitting, I modified the model so that ...
+   
+***Fully connected Layesr***
 
-Then I ... 
+  I added a fully connected layer after the convolutions to allow the model to perform high-level reasoning on the features taken from the convolutions.
+  
+*** Final Layer ***
 
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
+  This is a regression and not a classification problem since the output (steering angle) is continuous, ranging from -1.0 to 1.0. So instead of ending with a softmax layer, I used a 1-neuron fully connected layer as my final layer. 
+
+***Battle with overfitting***
+
+   In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
+
+  To combat the overfitting, I modified the model  and added more dropout layers. The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track when I tried with centre images only. To improve the driving behavior in these cases, I used all center,right,left and their fliped version of images.
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
 #### 2. Final Model Architecture
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
+The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes.
 
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
+***Specification in Table form***
+
+| Layer  | Detail |
+| ------------- |:-------------:| 
+|Convolution Layer 1| Filters: 16, Kernel: 8 x 8, Stride: 4 x 4 , Padding: SAME , Activation: ELU |
+|Convolution Layer 2| Filters: 32, Kernel: 5 x 5, Stride: 2 x 2 , Padding: SAME , Activation: ELU |
+|Convolution Layer 3| Filters: 64, Kernel: 5 x 5, Stride: 2 x 2 , Padding: SAME , Activation: ELU |
+|Flatten Layer|   |
+|Fully connected layer 1| Neurons: 512, Dropout: 0.5, Activation: ELU |
+|Fully connected layer 2| Neurons: 50, Activation: ELU |
+
+Here is a visualization of the architecture with its parameters. 
 
 ![alt text][image1]
 
