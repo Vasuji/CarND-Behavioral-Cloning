@@ -127,10 +127,84 @@ def get_model(verbose):
         print("Model summary:\n", model.summary())
     return model
 
-
-
 ```
+***Specification in Table form***
+<table>
+	<th>Layer</th><th>Details</th>
+	<tr>
+		<td>Convolution Layer 1</td>
+		<td>
+			<ul>
+				<li>Filters: 16</li>
+				<li>Kernel: 8 x 8</li>
+				<li>Stride: 4 x 4</li>
+				<li>Padding: SAME</li>
+				<li>Activation: ELU</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>Convolution Layer 2</td>
+		<td>
+			<ul>
+				<li>Filters: 32</li>
+				<li>Kernel: 5 x 5</li>
+				<li>Stride: 2 x 2</li>
+				<li>Padding: SAME</li>
+				<li>Activation: ELU</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>Convolution Layer 3</td>
+		<td>
+			<ul>
+				<li>Filters: 64</li>
+				<li>Kernel: 5 x 5</li>
+				<li>Stride: 2 x 2</li>
+				<li>Padding: SAME</li>
+				<li>Activation: ELU</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>Flatten layer</td>
+		<td>
+			<ul>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>Fully Connected Layer 1</td>
+		<td>
+			<ul>
+				<li>Neurons: 512</li>
+				<li>Dropout: 0.5</li>
+				<li>Activation: ELU</li>
+			</ul>
+		</td>
+	</tr>
+   	<tr>
+		<td>Fully Connected Layer 2</td>
+		<td>
+			<ul>
+				<li>Neurons: 50</li>
+				<li>Activation: ELU</li>
+			</ul>
+		</td>
+	</tr>
 
+	<tr>
+		<td>Fully Connected Layer 3</td>
+		<td>
+			<ul>
+				<li>Neurons: 1</li>
+				<li>Activation: tanh</li>
+			</ul>
+		</td>
+	</tr>
+
+</table>
 
 #### 2. Attempts to reduce overfitting in the model
 
