@@ -70,9 +70,67 @@ The model.py file contains the code for training and saving the convolution neur
 
 #### 1. An appropriate model architecture has been employed
 
-My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
+I tried the different models but the model adapted from Comma.ai's model worked best. This model consists a Sequential model comprising  cropping, resizing and normalization step with three convolution layers and three fully-connected layers. I trained the model with 20 epoch and the model weights were used for validation purpose.
 
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
+The model code are shown below :
+
+```
+def get_model(verbose):
+
+    # Model adapted from Comma.ai model
+
+    model = Sequential()
+
+    # Crop 64 pixels from the top of the image and 32 from the bottom
+    model.add(Cropping2D(input_shape=(160, 320, 3),
+                         cropping=((64, 32), (0, 0)),
+                         data_format="channels_last"))
+    
+    # resize the images to 40x160
+    model.add(Lambda(resize))
+    
+    # Normalise the data
+    model.add(Lambda(lambda x: (x/255.0) - 0.5))
+
+    # Conv layer 1
+    model.add(Convolution2D(16, (8, 8), padding="same", strides=(4, 4)))
+    model.add(ELU())
+
+    
+    # Conv layer 2
+    model.add(Convolution2D(32, (5, 5), padding="same", strides=(2, 2)))
+    model.add(ELU())
+
+    # Conv layer 3
+    model.add(Convolution2D(64, (5, 5), padding="same", strides=(2, 2)))
+              
+
+    model.add(Flatten())
+    model.add(Dropout(.2))
+    model.add(ELU())
+
+    # Fully connected layer 1
+    model.add(Dense(512))
+    model.add(Dropout(.5))
+    model.add(ELU())
+
+    # Fully connected layer 2
+    model.add(Dense(50))
+    model.add(ELU())
+
+    model.add(Dense(1))
+
+    adam = Adam(lr=0.0001)
+
+    model.compile(optimizer=adam, loss="mse", metrics=['accuracy'])
+    if verbose:
+        print("Model summary:\n", model.summary())
+    return model
+
+
+
+```
+
 
 #### 2. Attempts to reduce overfitting in the model
 
