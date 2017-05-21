@@ -138,7 +138,7 @@ def get_model(verbose):
 				<li>Stride: 4 x 4</li>
 				<li>Padding: SAME</li>
 				<li>Activation: ELU</li>
-			</ul>
+			</ul> |
 
 ---------
 
