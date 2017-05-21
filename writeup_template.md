@@ -129,6 +129,7 @@ def get_model(verbose):
 
 ```
 ***Specification in Table form***
+
 <table>
 	<th>Layer</th><th>Details</th>
 	<tr>
@@ -203,7 +204,6 @@ def get_model(verbose):
 			</ul>
 		</td>
 	</tr>
-
 </table>
 
 #### 2. Attempts to reduce overfitting in the model
