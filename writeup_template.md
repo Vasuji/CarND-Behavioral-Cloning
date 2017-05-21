@@ -130,6 +130,18 @@ def get_model(verbose):
 ```
 ***Specification in Table form***
 
+| Layer  | Detail |
+| ------------- |:-------------:| 
+|Convolution Layer 1| <ul>
+				<li>Filters: 16</li>
+				<li>Kernel: 8 x 8</li>
+				<li>Stride: 4 x 4</li>
+				<li>Padding: SAME</li>
+				<li>Activation: ELU</li>
+			</ul>
+
+---------
+
 <table>
 	<th>Layer</th><th>Details</th>
 	<tr>
