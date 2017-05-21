@@ -132,11 +132,7 @@ def get_model(verbose):
 
 | Layer  | Detail |
 | ------------- |:-------------:| 
-|Convolution Layer 1| Filters: 16
-		      Kernel: 8 x 8
-		      Stride: 4 x 4
-		      Padding: SAME
-		      Activation: ELU |
+|Convolution Layer 1| Filters: 16, Kernel: 8 x 8, Stride: 4 x 4 , Padding: SAME , Activation: ELU |
 			
 
 ---------
