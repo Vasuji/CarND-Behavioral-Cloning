@@ -25,11 +25,6 @@ The goals / steps of this project are the following:
 [image2c]: ./examples/right.jpg "right"
 [image2d]: ./examples/left_d.jpg "direct"
 [image2e]: ./examples/left_f.jpg "flipped"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -47,7 +42,8 @@ My project includes the following files:
 * writeup_report.md or writeup_report.pdf summarizing the results
 
 #### 2. Submission includes functional code
-Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
+Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing
+
 ```sh
 python drive.py model.h5
 ```
@@ -70,7 +66,7 @@ The model.py file contains the code for training and saving the convolution neur
 
 #### 1. An appropriate model architecture has been employed
 
-I tried the different models but the model adapted from Comma.ai's model worked best. This model consists a Sequential model comprising  cropping, resizing and normalization step with three convolution layers and three fully-connected layers. I trained the model with 20 epoch and the model weights were used for validation purpose.
+I tried the different models but the model adapted from [Comma.ai](https://github.com/commaai/research/blob/master/train_steering_model.py)'s model worked best. This model consists a Sequential model comprising of cropping, resizing and normalization step with three convolution layers and three fully-connected layers. I trained the model with 20 epoch and the model weights were used for test.
 
 The model code are shown below :
 
@@ -144,21 +140,27 @@ The model used an adam optimizer, so the learning rate was not tuned manually (m
 
 #### 4. Appropriate training data
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road and flipped images
+Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road and flipped images.
 
 For details about how I created the training data, see the next section. 
 
 -----------------
 
+
+
+
+
+
+
 ### Model Architecture and Training Strategy
 
 #### 1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to develop a model from data so that we could drive  a car in autonomous mode. Following are the steps in solution design aproach:
+The overall strategy for deriving a model architecture was to develop a model from data so that we could drive a car in autonomous mode. Following are the steps in solution design aproach:
 
 ***Convolution***
 
-   My first step was to use a convolution neural network model similar to the comma.ai. I thought this model might be appropriate because model building needs different property of image from different deepth of neural network. More strikingly it has to be precise on decision making for example: If the car is to the side of the lane, it should steer differently than if it is in the center of a lane. Central idea is where is car from middle of two lanes.
+   My first step was to use a convolution neural network model similar to the [Comma.ai](https://github.com/commaai/research/blob/master/train_steering_model.py). I thought this model might be appropriate because model building needs different property of image from different deepth of neural network. More strikingly it has to be precise on decision making for example: If the car is to the side of the lane, it should steer differently than if it is in the center of a lane. Central idea is where is car from middle of two lanes.
 
    
 ***Fully connected Layesr***
@@ -198,7 +200,7 @@ Here is a visualization of the architecture with its parameters.
 
 #### 3. Creation of the Training Set & Training Process
 
-I used the data available at Udacity(link). It consist of three types of images: center, right and left as shown below:
+I used the data made available by Udacity. It consist of three types of images: center, right and left as shown below:
 
 
 | Left          | Center        | Right  |
@@ -206,11 +208,11 @@ I used the data available at Udacity(link). It consist of three types of images:
 |![Left][image2a] | ![Center][image2b] | ![Right][image2c]
 
 
-Simultanously, I also changed the steering angle for right and left images by 
+Simultanously, I also changed the steering angle for right and left images by adding and substracting correction (0.15)
 
 ```
-right_info['steering'].apply(lambda x : x-0.2) 
-left_info['steering'].apply(lambda x : x+0.2) 
+right_info['steering'].apply(lambda x : x-0.15) 
+left_info['steering'].apply(lambda x : x+0.15) 
 ```
 
 Then I increased the data by data augumentation, where I flipped the images using matplotlib's  ```image_f = image.transpose(Image.FLIP_LEFT_RIGHT)``` . A sample of direct and fipped images are as follows:
@@ -222,13 +224,13 @@ Then I increased the data by data augumentation, where I flipped the images usin
 
 
 
-While flipping the images, I also changed the steering angles by using :
+While flipping the images, I also changed the steering angles by multiplying old one by -1.0, which means there is rotation by 180 degree or mirror reflection.
 
 ```
 f_steering_angle = -1. * float(item[1][1])
 ```
 
-After the collection process, I had 43394 number of data points. Initial images are of size ```160,320``` with 3 color chanels. I croped away the top ```64``` rows and bottom ```32``` row of pixels. I then resized this data to ```40x160``` by introducing ```Lambda ``` function and normalized the data by introducing another lambda function.
+After the collection process, I had 43394 number of data samples. Initial images are of size ```160,320``` with 3 color chanels. I croped away the top ```64``` rows and bottom ```32``` row of pixels. I then resized this data to ```40x160``` by introducing ```Lambda ``` function and normalized the data by introducing another lambda function.
 
 
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
