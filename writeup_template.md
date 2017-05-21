@@ -132,7 +132,7 @@ I used the data available at Udacity(link). It consist of three types of images:
 
 | Left          | Center        | Right  |
 | ------------- |:-------------:| ------|
-|![Left](image2a) | ![Center](image2b) | ![Right](image2c)
+|![Left][image2a] | ![Center][image2b] | ![Right][image2c]
 
 
 Simultanously, Ialso changed the steering angle for right and left images by 
