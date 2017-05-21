@@ -1,8 +1,9 @@
-#**Behavioral Cloning** 
+
+# Behavioral Cloning
 
 ## Writeup Template
 
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
+### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
 
 ---
 
@@ -128,7 +129,9 @@ Here is a visualization of the architecture (note: visualizing the architecture 
 
 I used the data available at Udacity(link). It consist of three types of images: center, right and left as shown below:
 
-![alt text][image2a]![alt text][image2b]![alt text][image2c]
+![alt text][image2a]
+![alt text][image2b]
+![alt text][image2c]
 
 Simultanously, Ialso changed the steering angle for right and left images by 
 
@@ -139,7 +142,8 @@ left_info['steering'].apply(lambda x : x+0.2)
 
 Then I increased the data by data augumentation, where I flipped the images using matplotlib's  ```image_f = image.transpose(Image.FLIP_LEFT_RIGHT)``` . A sample of direct and fipped images are as follows:
 
-![alt text][image2d]![alt text][image2e]
+![alt text][image2d]
+![alt text][image2e]
 
 While flipping the images, I also changed the steering angles by using :
 
